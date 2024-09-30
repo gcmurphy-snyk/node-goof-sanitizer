@@ -31,6 +31,16 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+app.get('/rpc', (req, res) => {
+  if (localSanityCheck(req.query.a) && localSanityCheck(req.query.b)){
+    res.send(eval(req.query.a + req.query.b))
+  } else {
+    res.status(400);
+    res.send("bad request");
+  }
+
+})
+
 app.get('/search', (req, res) => {
   var results = [];
   db.all(`select * from users where email = '${req.query.q}'`, (err, rows) => {
@@ -47,3 +57,13 @@ app.get('/search', (req, res) => {
 app.listen(port, () => {
   console.log(`This application is vulnerable to SQLI! ${port}`)
 })
+
+function localSanityCheck(arg) {
+  const allowed = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
+  for (const c of arg){
+    if (! allowed.includes(c)){
+      return false;
+    }
+  }
+  return true;
+}
