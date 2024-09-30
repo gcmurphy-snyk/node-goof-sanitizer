@@ -41,7 +41,7 @@ app.get('/customLogic', (req, res) => {
 })
 
 app.get('/languageSupported', (req, res) => {
-  if (localRegexpCheck(req.query.a) && localRegexpCheck(req.query.b)){
+  if (/^[0-9]+$/.match(req.query.a) && /^[0-9]+.match(req.query.b)){
     res.send(eval(req.query.a + req.query.b))
   } else {
     res.status(400);
@@ -65,10 +65,6 @@ app.get('/search', (req, res) => {
 app.listen(port, () => {
   console.log(`This application is vulnerable to SQLI! ${port}`)
 })
-
-function localRegexpCheck(arg) {
-    return /^[0-9]+$/.match(arg) != null;
-}
 
 function localSanityCheck(arg) {
   const allowed = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
