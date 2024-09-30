@@ -1,0 +1,18 @@
+{
+  "name": "standalone-sqli-example-node",
+  "version": "1.0.0",
+  "description": "On purpose vulnerable project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "node-sqlite": "^0.0.2-security",
+    "sqlite3": "^5.1.7"
+  }
+}

@@ -1,0 +1,23 @@
+<html>
+    <body>
+    <% if (results.length > 0) { %> 
+    <h1>Results</h1>
+    <ul>
+    <% for (let result of results ){ %>
+      <li>
+        <p>Name: <%= result.name %></p>
+        <p>Email: <%= result.email %></p>
+        <!-- DEBUG 
+        <p>Password: <%= result.password %></p> 
+        -->
+      </li>
+    <% }; %>
+    </ul>
+    <% } else { %>
+    No results found! 
+    <% } %>
+    <p>
+        <a href="javascript:history.back()">Back</a>
+    </p>
+    </body>
+</html>
