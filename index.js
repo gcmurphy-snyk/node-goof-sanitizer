@@ -31,14 +31,22 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.get('/rpc', (req, res) => {
+app.get('/customLogic', (req, res) => {
   if (localSanityCheck(req.query.a) && localSanityCheck(req.query.b)){
     res.send(eval(req.query.a + req.query.b))
   } else {
     res.status(400);
     res.send("bad request");
   }
+})
 
+app.get('/languageSupported', (req, res) => {
+  if (localRegexpCheck(req.query.a) && localRegexpCheck(req.query.b)){
+    res.send(eval(req.query.a + req.query.b))
+  } else {
+    res.status(400);
+    res.send("bad request");
+  }
 })
 
 app.get('/search', (req, res) => {
@@ -57,6 +65,10 @@ app.get('/search', (req, res) => {
 app.listen(port, () => {
   console.log(`This application is vulnerable to SQLI! ${port}`)
 })
+
+function localRegexpCheck(arg) {
+    return /^[0-9]+$/.match(arg) != null;
+}
 
 function localSanityCheck(arg) {
   const allowed = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
