@@ -41,7 +41,7 @@ app.get('/customLogic', (req, res) => {
 })
 
 app.get('/languageSupported', (req, res) => {
-  if (/^[0-9]+$/.match(req.query.a) && /^[0-9]+.match(req.query.b)){
+  if (/^[0-9]+$/.match(req.query.a) && /^[0-9]+/.match(req.query.b)){
     res.send(eval(req.query.a + req.query.b))
   } else {
     res.status(400);
