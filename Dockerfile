@@ -1,4 +1,4 @@
-FROM node:20.11.1-bullseye
+FROM node:20.18.3-bullseye
 RUN mkdir /app && apt-get update && apt-get install -y sqlite3 libsqlite3-dev 
 WORKDIR /app
 COPY . .
